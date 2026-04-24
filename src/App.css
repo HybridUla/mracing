@@ -12,7 +12,7 @@
   inset: 0 0 auto;
   z-index: 10;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 1rem 4vw;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.2));
@@ -22,19 +22,6 @@
 .brand img {
   width: clamp(130px, 16vw, 210px);
   display: block;
-}
-
-.nav {
-  display: flex;
-  gap: 1.25rem;
-}
-
-.nav a {
-  color: #fff;
-  font-weight: 600;
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 .hero {
@@ -113,7 +100,8 @@ h1 {
 .record {
   display: grid;
   gap: 2rem;
-  grid-template-columns: 1.1fr 1fr;
+  grid-template-columns: 1fr 1.2fr;
+  align-items: center;
 }
 
 .record p {
@@ -123,8 +111,11 @@ h1 {
 
 .record-media img {
   width: 100%;
+  min-height: clamp(270px, 34vw, 460px);
   border-radius: 1rem;
   border: 1px solid var(--line);
+  object-fit: cover;
+  object-position: center 30%;
   box-shadow: var(--shadow-deep);
 }
 
@@ -172,15 +163,20 @@ h1 {
 .product-card img {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 8;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
 }
 
 .product-card video {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 8;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
+}
+
+.product-card--ethanol img {
+  aspect-ratio: 4 / 3;
+  object-position: center 18%;
 }
 
 .product-card-content {

@@ -47,7 +47,7 @@ function App() {
       intake.message || '(none)',
     ].join('\n')
 
-    return `mailto:info@mracing.biz?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    return `mailto:chris@hybrid.contact?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
   }, [intake])
 
   const updateField = (event) => {
@@ -77,9 +77,18 @@ function App() {
     setStep((prev) => Math.max(prev - 1, 1))
   }
 
+  const submitIntake = () => {
+    if (step !== 3) return
+    window.location.href = mailtoHref
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault()
-    window.location.href = mailtoHref
+    if (step < 3) {
+      nextStep()
+      return
+    }
+    submitIntake()
   }
 
   return (
@@ -88,11 +97,6 @@ function App() {
         <a href="#home" className="brand" aria-label="M Racing home">
           <img src="/media/M-Racing-Logo-no-tag.png" alt="M Racing" />
         </a>
-        <nav className="nav">
-          <a href="#products">Products</a>
-          <a href="#record">Record</a>
-          <a href="#contact">Contact</a>
-        </nav>
       </header>
 
       <main>
@@ -153,7 +157,7 @@ function App() {
           <h2>Choose your weapon.</h2>
           <div className="product-grid">
             {products.map((product) => (
-              <article className="product-card" key={product.id}>
+              <article className={`product-card product-card--${product.id}`} key={product.id}>
                 {product.mediaType === 'video' ? (
                   <video
                     src={product.media}
@@ -290,7 +294,7 @@ function App() {
                     Next
                   </button>
                 ) : (
-                  <button type="submit" className="btn-primary-form">
+                  <button type="button" className="btn-primary-form" onClick={submitIntake}>
                     Submit Intake
                   </button>
                 )}
