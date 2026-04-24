@@ -6,7 +6,7 @@ const products = [
     title: 'Ethanol',
     subtitle: 'Power that stays consistent pull after pull.',
     description:
-      'Race-proven ethanol fuel built for repeatable performance in boosted and high-compression platforms.',
+      'Race-proven ethanol fuel supplied for repeatable performance in boosted and high-compression platforms.',
     image: '/media/ETHANOL-bg-scaled.png',
     button: 'Explore Ethanol',
   },
@@ -15,7 +15,7 @@ const products = [
     title: 'Wheels',
     subtitle: 'Forgeline fitment with motorsport intent.',
     description:
-      'Forged wheel options engineered for track abuse while still looking elite on the street and at events.',
+      'Forged wheel options supplied for track abuse while still looking elite on the street and at events.',
     image: '/media/wheels-bg-scaled.png',
     button: 'Explore Wheels',
   },
@@ -49,10 +49,10 @@ function App() {
           <div className="hero-overlay" />
           <div className="hero-content container">
             <p className="eyebrow">The Speed of Winning</p>
-            <h1>World's Quickest Huracan. Built by M Racing.</h1>
+            <h1>World's Quickest Huracan. Powered by M Racing Supply.</h1>
             <p className="lead">
-              We build Lamborghini performance systems that break records, back
-              it up with data, and dominate when it matters.
+              We supply elite racing fuel and forged wheels trusted by teams
+              setting world records when it matters most.
             </p>
             <div className="cta-row">
               <a href="#products" className="btn btn-primary">
@@ -68,10 +68,10 @@ function App() {
         <section id="record" className="record container">
           <div className="record-copy">
             <p className="eyebrow">Record-Breaking Performance</p>
-            <h2>Purpose-built twin turbo engineering.</h2>
+            <h2>Proven products behind world-class passes.</h2>
             <p>
-              From fabrication and calibration to track validation, every M
-              Racing package is developed for fast, stable, repeatable results.
+              From drag strips to high-speed events, M Racing supplies ethanol
+              and wheel packages that support fast, stable, repeatable results.
             </p>
             <div className="stats">
               <article>
@@ -79,17 +79,17 @@ function App() {
                 <p>World benchmark setting pass.</p>
               </article>
               <article>
-                <h3>In-House</h3>
-                <p>Fabrication and tuning under one roof.</p>
+                <h3>Supplier Grade</h3>
+                <p>Premium fuel and wheel inventory ready to deliver.</p>
               </article>
               <article>
-                <h3>Data-Driven</h3>
-                <p>Calibrations built for consistency, not dyno bragging.</p>
+                <h3>Track-Proven</h3>
+                <p>Products trusted by championship and record-level teams.</p>
               </article>
             </div>
           </div>
           <div className="record-media">
-            <img src="/media/Group-15-scaled.png" alt="M Racing engineered supercar" />
+            <img src="/media/Group-15-scaled.png" alt="World-record supercar using M Racing products" />
           </div>
         </section>
 
@@ -139,12 +139,12 @@ function App() {
           </div>
           <div>
             <p className="eyebrow">About M Racing</p>
-            <h2>Built by racers for racers.</h2>
+            <h2>Supplied by racers for racers.</h2>
             <p>
-              M Racing blends motorsport fabrication, track development, and ECU
-              strategy into complete systems for exotic and high-horsepower
-              platforms. Every part we offer is selected to perform when
-              conditions are real and pressure is high.
+              M Racing is a performance supplier specializing in premium racing
+              fuel and forged wheels for exotic and high-horsepower platforms.
+              Everything we carry is selected to deliver when conditions are
+              real and pressure is high.
             </p>
             <div className="chip-row">
               <span>Twin Turbo Platforms</span>
@@ -165,10 +165,10 @@ function App() {
           <div className="contact-overlay" />
           <div className="contact-content container">
             <p className="eyebrow">Ready to go faster?</p>
-            <h2>Let's build your next record run.</h2>
+            <h2>Let's supply your next record run.</h2>
             <p>
-              Tell us your platform, power goals, and timeline. We will map the
-              right setup for your build.
+              Tell us your platform, power goals, and timeline. We will match
+              you with the right fuel and wheel setup.
             </p>
             <a className="btn btn-primary" href="mailto:info@mracing.biz">
               Contact M Racing
