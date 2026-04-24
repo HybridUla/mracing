@@ -7,7 +7,8 @@ const products = [
     subtitle: 'Power that stays consistent pull after pull.',
     description:
       'Race-proven ethanol fuel supplied for repeatable performance in boosted and high-compression platforms.',
-    image: '/media/ETHANOL-bg-scaled.png',
+    media: '/media/OneEthanolR.jpg',
+    mediaType: 'image',
     button: 'Explore Ethanol',
   },
   {
@@ -16,7 +17,8 @@ const products = [
     subtitle: 'Forgeline fitment with motorsport intent.',
     description:
       'Forged wheel options supplied for track abuse while still looking elite on the street and at events.',
-    image: '/media/wheels-bg-scaled.png',
+    media: '/media/M-Racing-Wheels.mp4',
+    mediaType: 'video',
     button: 'Explore Wheels',
   },
 ]
@@ -31,7 +33,6 @@ function App() {
         <nav className="nav">
           <a href="#products">Products</a>
           <a href="#record">Record</a>
-          <a href="#about">About</a>
           <a href="#contact">Contact</a>
         </nav>
       </header>
@@ -54,14 +55,10 @@ function App() {
               We supply elite racing fuel and forged wheels trusted by teams
               setting world records when it matters most.
             </p>
-            <div className="cta-row">
-              <a href="#products" className="btn btn-primary">
-                Build Your Setup
-              </a>
-              <a href="#contact" className="btn btn-secondary">
-                Talk to the Team
-              </a>
-            </div>
+            <p className="lead about-inline">
+              M Racing is a performance supplier specializing in premium racing
+              fuel and forged wheels for exotic and high-horsepower platforms.
+            </p>
           </div>
         </section>
 
@@ -99,7 +96,18 @@ function App() {
           <div className="product-grid">
             {products.map((product) => (
               <article className="product-card" key={product.id}>
-                <img src={product.image} alt={product.title} />
+                {product.mediaType === 'video' ? (
+                  <video
+                    src={product.media}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    aria-label={product.title}
+                  />
+                ) : (
+                  <img src={product.media} alt={product.title} />
+                )}
                 <div className="product-card-content">
                   <h3>{product.title}</h3>
                   <p className="sub">{product.subtitle}</p>
@@ -110,48 +118,6 @@ function App() {
                 </div>
               </article>
             ))}
-          </div>
-        </section>
-
-        <section className="split-media">
-          <div className="split-item">
-            <video
-              src="/media/M-Racing-Wheels.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-            />
-            <div className="split-caption">Forgeline Wheel Program</div>
-          </div>
-          <div className="split-item">
-            <img src="/media/OneEthanolR.jpg" alt="Ethanol One fuel product" />
-            <div className="split-caption">Ethanol One Fuel Delivery</div>
-          </div>
-        </section>
-
-        <section id="about" className="about container">
-          <div className="about-badge">
-            <img
-              src="/media/M-Racing-Logo-no-tag-white-vertical-2.png"
-              alt="M Racing vertical logo"
-            />
-          </div>
-          <div>
-            <p className="eyebrow">About M Racing</p>
-            <h2>Supplied by racers for racers.</h2>
-            <p>
-              M Racing is a performance supplier specializing in premium racing
-              fuel and forged wheels for exotic and high-horsepower platforms.
-              Everything we carry is selected to deliver when conditions are
-              real and pressure is high.
-            </p>
-            <div className="chip-row">
-              <span>Twin Turbo Platforms</span>
-              <span>Track Validation</span>
-              <span>Custom Calibration</span>
-              <span>Street + Strip Reliability</span>
-            </div>
           </div>
         </section>
 

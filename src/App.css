@@ -98,40 +98,10 @@ h1 {
   line-height: 1.6;
 }
 
-.cta-row {
-  margin-top: 2rem;
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.85rem 1.3rem;
-  border-radius: 999px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-size: 0.76rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-}
-
-.btn-primary {
-  background: var(--brand-red);
-  color: #fff;
-  box-shadow: 0 10px 25px rgba(207, 46, 46, 0.4);
-}
-
-.btn-secondary {
-  border: 1px solid var(--line);
-  color: #fff;
-  background: rgba(255, 255, 255, 0.03);
+.about-inline {
+  margin-top: 0.75rem;
+  max-width: 62ch;
+  font-size: 0.98rem;
 }
 
 .record,
@@ -206,6 +176,13 @@ h1 {
   object-fit: cover;
 }
 
+.product-card video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 8;
+  object-fit: cover;
+}
+
 .product-card-content {
   padding: 1.2rem;
 }
@@ -229,82 +206,6 @@ h1 {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   font-size: 0.75rem;
-}
-
-.split-media {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.split-item {
-  position: relative;
-  min-height: 380px;
-}
-
-.split-item img,
-.split-item video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.split-caption {
-  position: absolute;
-  left: 1rem;
-  bottom: 1rem;
-  background: rgba(0, 0, 0, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 999px;
-  color: #fff;
-  padding: 0.35rem 0.75rem;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.about {
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 2rem;
-  align-items: center;
-}
-
-.about-badge {
-  border: 1px solid var(--line);
-  border-radius: 1rem;
-  padding: 1rem;
-  display: grid;
-  place-items: center;
-  background: var(--panel);
-}
-
-.about-badge img {
-  width: 100%;
-  max-width: 150px;
-}
-
-.about p {
-  color: var(--text-muted);
-  line-height: 1.75;
-}
-
-.chip-row {
-  margin-top: 1rem;
-  display: flex;
-  gap: 0.55rem;
-  flex-wrap: wrap;
-}
-
-.chip-row span {
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 0.4rem 0.72rem;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #f4f4f4;
 }
 
 .contact {
@@ -378,8 +279,7 @@ address {
     gap: 0.75rem;
   }
 
-  .record,
-  .about {
+  .record {
     grid-template-columns: 1fr;
   }
 
@@ -387,13 +287,8 @@ address {
     grid-template-columns: 1fr;
   }
 
-  .product-grid,
-  .split-media {
+  .product-grid {
     grid-template-columns: 1fr;
-  }
-
-  .split-item {
-    min-height: 300px;
   }
 
   .footer {
