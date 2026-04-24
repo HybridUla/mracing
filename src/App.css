@@ -245,6 +245,119 @@ h1 {
   line-height: 1.7;
 }
 
+.intake-form {
+  margin-top: 1.2rem;
+  max-width: 680px;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.46);
+  backdrop-filter: blur(4px);
+}
+
+.intake-steps {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.9rem;
+}
+
+.intake-steps span {
+  font-size: 0.73rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.3rem 0.65rem;
+  color: var(--text-muted);
+}
+
+.intake-steps span.active {
+  border-color: rgba(207, 46, 46, 0.75);
+  color: #fff;
+}
+
+.intake-panel {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.intake-panel label,
+.field-label {
+  color: #efefef;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.intake-panel input,
+.intake-panel textarea {
+  width: 100%;
+  margin-top: 0.4rem;
+  border-radius: 0.65rem;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+  padding: 0.66rem 0.8rem;
+  font: inherit;
+}
+
+.intake-panel input:focus,
+.intake-panel textarea:focus {
+  outline: 2px solid rgba(207, 46, 46, 0.55);
+  outline-offset: 1px;
+}
+
+.choice {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  padding: 0.72rem;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.choice input {
+  width: auto;
+  margin: 0;
+}
+
+.intake-actions {
+  display: flex;
+  gap: 0.65rem;
+  margin-top: 0.9rem;
+}
+
+.btn-primary-form,
+.btn-secondary-form {
+  border-radius: 999px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.73rem;
+  padding: 0.72rem 1.1rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.btn-primary-form {
+  background: var(--brand-red);
+  color: #fff;
+}
+
+.btn-secondary-form {
+  background: transparent;
+  border-color: var(--line);
+  color: #fff;
+}
+
+.form-error {
+  margin: 0.8rem 0 0;
+  color: #ff8f8f;
+  font-size: 0.86rem;
+}
+
 address {
   margin-top: 1.3rem;
   font-style: normal;

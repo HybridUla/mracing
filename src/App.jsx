@@ -1,3 +1,4 @@
+import { useMemo, useState } from 'react'
 import './App.css'
 
 const products = [
@@ -24,6 +25,63 @@ const products = [
 ]
 
 function App() {
+  const [step, setStep] = useState(1)
+  const [error, setError] = useState('')
+  const [intake, setIntake] = useState({
+    firstName: '',
+    phone: '',
+    email: '',
+    requestType: '',
+    message: '',
+  })
+
+  const mailtoHref = useMemo(() => {
+    const subject = `M Racing Intake - ${intake.requestType || 'General Inquiry'}`
+    const body = [
+      `First Name: ${intake.firstName}`,
+      `Phone Number: ${intake.phone}`,
+      `Email: ${intake.email}`,
+      `Request Type: ${intake.requestType || 'Not selected'}`,
+      '',
+      'Message:',
+      intake.message || '(none)',
+    ].join('\n')
+
+    return `mailto:info@mracing.biz?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+  }, [intake])
+
+  const updateField = (event) => {
+    const { name, value } = event.target
+    setIntake((prev) => ({ ...prev, [name]: value }))
+    if (error) setError('')
+  }
+
+  const nextStep = () => {
+    if (step === 1) {
+      if (!intake.firstName.trim() || !intake.phone.trim() || !intake.email.trim()) {
+        setError('Please fill in first name, phone number, and email to continue.')
+        return
+      }
+    }
+
+    if (step === 2 && !intake.requestType) {
+      setError('Please select Wheels or Fuel to continue.')
+      return
+    }
+
+    setStep((prev) => Math.min(prev + 1, 3))
+  }
+
+  const prevStep = () => {
+    setError('')
+    setStep((prev) => Math.max(prev - 1, 1))
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    window.location.href = mailtoHref
+  }
+
   return (
     <div className="site">
       <header className="topbar">
@@ -131,14 +189,113 @@ function App() {
           <div className="contact-overlay" />
           <div className="contact-content container">
             <p className="eyebrow">Ready to go faster?</p>
-            <h2>Let's supply your next record run.</h2>
+            <h2>Start your intake.</h2>
             <p>
-              Tell us your platform, power goals, and timeline. We will match
-              you with the right fuel and wheel setup.
+              Complete the quick intake below and we will contact you with the
+              right fuel or wheel recommendation.
             </p>
-            <a className="btn btn-primary" href="mailto:info@mracing.biz">
-              Contact M Racing
-            </a>
+            <form className="intake-form" onSubmit={handleSubmit}>
+              <div className="intake-steps" aria-label="Intake form steps">
+                <span className={step >= 1 ? 'active' : ''}>1. Contact</span>
+                <span className={step >= 2 ? 'active' : ''}>2. Product</span>
+                <span className={step >= 3 ? 'active' : ''}>3. Message</span>
+              </div>
+
+              {step === 1 && (
+                <div className="intake-panel">
+                  <label>
+                    First Name
+                    <input
+                      type="text"
+                      name="firstName"
+                      value={intake.firstName}
+                      onChange={updateField}
+                      placeholder="John"
+                    />
+                  </label>
+                  <label>
+                    Phone Number
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={intake.phone}
+                      onChange={updateField}
+                      placeholder="(555) 555-5555"
+                    />
+                  </label>
+                  <label>
+                    Email
+                    <input
+                      type="email"
+                      name="email"
+                      value={intake.email}
+                      onChange={updateField}
+                      placeholder="name@example.com"
+                    />
+                  </label>
+                </div>
+              )}
+
+              {step === 2 && (
+                <div className="intake-panel">
+                  <p className="field-label">What do you need?</p>
+                  <label className="choice">
+                    <input
+                      type="radio"
+                      name="requestType"
+                      value="Wheels"
+                      checked={intake.requestType === 'Wheels'}
+                      onChange={updateField}
+                    />
+                    Wheels
+                  </label>
+                  <label className="choice">
+                    <input
+                      type="radio"
+                      name="requestType"
+                      value="Fuel"
+                      checked={intake.requestType === 'Fuel'}
+                      onChange={updateField}
+                    />
+                    Fuel
+                  </label>
+                </div>
+              )}
+
+              {step === 3 && (
+                <div className="intake-panel">
+                  <label>
+                    Message
+                    <textarea
+                      name="message"
+                      value={intake.message}
+                      onChange={updateField}
+                      placeholder="Tell us your platform, goals, and timeline..."
+                      rows={5}
+                    />
+                  </label>
+                </div>
+              )}
+
+              {error && <p className="form-error">{error}</p>}
+
+              <div className="intake-actions">
+                {step > 1 && (
+                  <button type="button" className="btn-secondary-form" onClick={prevStep}>
+                    Back
+                  </button>
+                )}
+                {step < 3 ? (
+                  <button type="button" className="btn-primary-form" onClick={nextStep}>
+                    Next
+                  </button>
+                ) : (
+                  <button type="submit" className="btn-primary-form">
+                    Submit Intake
+                  </button>
+                )}
+              </div>
+            </form>
             <address>
               M Racing LLC
               <br />
