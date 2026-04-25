@@ -348,13 +348,6 @@ function App() {
                 </p>
               )}
             </form>
-            <address>
-              M Racing LLC
-              <br />
-              1234 State Street
-              <br />
-              Rockford, IL 61107
-            </address>
           </div>
         </section>
       </main>
