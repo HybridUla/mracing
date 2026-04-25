@@ -221,8 +221,7 @@ function App() {
           />
           <div className="contact-overlay" />
           <div className="contact-content container">
-            <p className="eyebrow">Ready to go faster?</p>
-            <h2>Start your intake.</h2>
+            <h2>Ready to go faster?</h2>
             <p>
               Complete the quick intake below and we will contact you with the
               right fuel or wheel recommendation.
