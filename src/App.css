@@ -158,29 +158,40 @@ h1 {
   border-radius: 1rem;
   overflow: hidden;
   background: var(--panel);
+  display: flex;
+  flex-direction: column;
+}
+
+.product-media {
+  height: clamp(280px, 32vw, 360px);
 }
 
 .product-card img {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  height: 100%;
   object-fit: cover;
 }
 
 .product-card video {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  height: 100%;
   object-fit: cover;
 }
 
 .product-card--ethanol img {
-  aspect-ratio: 4 / 3;
-  object-position: center 18%;
+  object-fit: contain;
+  object-position: center center;
+  padding: 0.9rem;
+  background: linear-gradient(160deg, rgba(12, 12, 12, 0.95), rgba(0, 0, 0, 0.8));
 }
 
 .product-card-content {
   padding: 1.2rem;
+  display: grid;
+  gap: 0.45rem;
+  flex: 1;
 }
 
 .product-card .sub {
@@ -337,6 +348,12 @@ h1 {
   border: 1px solid transparent;
 }
 
+.btn-primary-form:disabled,
+.btn-secondary-form:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
 .btn-primary-form {
   background: var(--brand-red);
   color: #fff;
@@ -352,6 +369,19 @@ h1 {
   margin: 0.8rem 0 0;
   color: #ff8f8f;
   font-size: 0.86rem;
+}
+
+.submit-note {
+  margin: 0.75rem 0 0;
+  font-size: 0.86rem;
+}
+
+.submit-note--success {
+  color: #99f0b2;
+}
+
+.submit-note--error {
+  color: #ff8f8f;
 }
 
 address {

@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import './App.css'
 
 const products = [
@@ -27,6 +27,8 @@ const products = [
 function App() {
   const [step, setStep] = useState(1)
   const [error, setError] = useState('')
+  const [submitStatus, setSubmitStatus] = useState('idle')
+  const [submitMessage, setSubmitMessage] = useState('')
   const [intake, setIntake] = useState({
     firstName: '',
     phone: '',
@@ -35,25 +37,14 @@ function App() {
     message: '',
   })
 
-  const mailtoHref = useMemo(() => {
-    const subject = `M Racing Intake - ${intake.requestType || 'General Inquiry'}`
-    const body = [
-      `First Name: ${intake.firstName}`,
-      `Phone Number: ${intake.phone}`,
-      `Email: ${intake.email}`,
-      `Request Type: ${intake.requestType || 'Not selected'}`,
-      '',
-      'Message:',
-      intake.message || '(none)',
-    ].join('\n')
-
-    return `mailto:chris@hybrid.contact?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
-  }, [intake])
-
   const updateField = (event) => {
     const { name, value } = event.target
     setIntake((prev) => ({ ...prev, [name]: value }))
     if (error) setError('')
+    if (submitMessage) {
+      setSubmitMessage('')
+      setSubmitStatus('idle')
+    }
   }
 
   const nextStep = () => {
@@ -77,9 +68,45 @@ function App() {
     setStep((prev) => Math.max(prev - 1, 1))
   }
 
-  const submitIntake = () => {
-    if (step !== 3) return
-    window.location.href = mailtoHref
+  const submitIntake = async () => {
+    if (step !== 3 || submitStatus === 'loading') return
+
+    setSubmitStatus('loading')
+    setSubmitMessage('')
+
+    try {
+      const response = await fetch('/api/intake', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(intake),
+      })
+
+      const payload = await response.json()
+
+      if (!response.ok) {
+        throw new Error(payload.error || 'Unable to send intake right now.')
+      }
+
+      setSubmitStatus('success')
+      setSubmitMessage('Intake sent successfully. We will reach out shortly.')
+      setStep(1)
+      setIntake({
+        firstName: '',
+        phone: '',
+        email: '',
+        requestType: '',
+        message: '',
+      })
+    } catch (submitError) {
+      setSubmitStatus('error')
+      setSubmitMessage(
+        submitError instanceof Error
+          ? submitError.message
+          : 'Unable to send intake right now.',
+      )
+    }
   }
 
   const handleSubmit = (event) => {
@@ -158,18 +185,20 @@ function App() {
           <div className="product-grid">
             {products.map((product) => (
               <article className={`product-card product-card--${product.id}`} key={product.id}>
-                {product.mediaType === 'video' ? (
-                  <video
-                    src={product.media}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    aria-label={product.title}
-                  />
-                ) : (
-                  <img src={product.media} alt={product.title} />
-                )}
+                <div className="product-media">
+                  {product.mediaType === 'video' ? (
+                    <video
+                      src={product.media}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      aria-label={product.title}
+                    />
+                  ) : (
+                    <img src={product.media} alt={product.title} />
+                  )}
+                </div>
                 <div className="product-card-content">
                   <h3>{product.title}</h3>
                   <p className="sub">{product.subtitle}</p>
@@ -285,20 +314,40 @@ function App() {
 
               <div className="intake-actions">
                 {step > 1 && (
-                  <button type="button" className="btn-secondary-form" onClick={prevStep}>
+                  <button
+                    type="button"
+                    className="btn-secondary-form"
+                    onClick={prevStep}
+                    disabled={submitStatus === 'loading'}
+                  >
                     Back
                   </button>
                 )}
                 {step < 3 ? (
-                  <button type="button" className="btn-primary-form" onClick={nextStep}>
+                  <button
+                    type="button"
+                    className="btn-primary-form"
+                    onClick={nextStep}
+                    disabled={submitStatus === 'loading'}
+                  >
                     Next
                   </button>
                 ) : (
-                  <button type="button" className="btn-primary-form" onClick={submitIntake}>
-                    Submit Intake
+                  <button
+                    type="button"
+                    className="btn-primary-form"
+                    onClick={submitIntake}
+                    disabled={submitStatus === 'loading'}
+                  >
+                    {submitStatus === 'loading' ? 'Sending...' : 'Submit Intake'}
                   </button>
                 )}
               </div>
+              {submitMessage && (
+                <p className={`submit-note submit-note--${submitStatus}`}>
+                  {submitMessage}
+                </p>
+              )}
             </form>
             <address>
               M Racing LLC
