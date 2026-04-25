@@ -223,8 +223,8 @@ function App() {
           <div className="contact-content container">
             <h2>Ready to go faster?</h2>
             <p>
-              Complete the quick intake below and we will contact you with the
-              right fuel or wheel recommendation.
+              Tell us what you drive and what you are chasing, and our team
+              will match you with the right fuel or wheel setup.
             </p>
             <form className="intake-form" onSubmit={handleSubmit}>
               <div className="intake-steps" aria-label="Intake form steps">
