@@ -4,20 +4,30 @@ import './App.css'
 const products = [
   {
     id: 'ethanol',
-    title: 'Ethanol',
+    title: 'One R Fuel',
     subtitle: 'Power that stays consistent pull after pull.',
     description:
-      'Race-proven ethanol fuel supplied for repeatable performance in boosted and high-compression platforms.',
+      'One R is M Racing’s performance ethanol blend made for high-power street and race applications that need clean, repeatable combustion.',
+    details: [
+      'High-octane ethanol formula helps resist knock under heavy boost and aggressive timing.',
+      'Consistent blend quality improves tuning stability from one fill-up to the next.',
+      'Designed for serious builds that demand cooler charge temps and reliable power delivery.',
+    ],
     media: '/media/OneEthanolR.jpg',
     mediaType: 'image',
     button: 'Explore Ethanol',
   },
   {
     id: 'wheels',
-    title: 'Wheels',
+    title: 'Forgeline Wheels',
     subtitle: 'Forgeline fitment with motorsport intent.',
     description:
-      'Forged wheel options supplied for track abuse while still looking elite on the street and at events.',
+      'Forgeline wheels are USA-made forged aluminum wheels known for low weight, high strength, and custom fitment for performance platforms.',
+    details: [
+      'Forged construction delivers stronger wheels with less weight than typical cast options.',
+      'Built for real motorsport abuse while maintaining premium road and show-car finish.',
+      'Custom sizing and offsets help dial in traction, brake clearance, and stance correctly.',
+    ],
     media: '/media/M-Racing-Wheels.mp4',
     mediaType: 'video',
     button: 'Explore Wheels',
@@ -203,6 +213,11 @@ function App() {
                   <h3>{product.title}</h3>
                   <p className="sub">{product.subtitle}</p>
                   <p>{product.description}</p>
+                  <ul className="product-details">
+                    {product.details.map((detail) => (
+                      <li key={detail}>{detail}</li>
+                    ))}
+                  </ul>
                   <a href="#contact" className="text-link">
                     {product.button}
                   </a>
